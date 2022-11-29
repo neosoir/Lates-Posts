@@ -7,10 +7,13 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-create-block-boilerplate {
-  background-color: #21759b;
-  color: #fff;
-  padding: 2px;
+ul.wp-block-blocks-course-latest-posts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 3, 1fr;
+  gap: 30px;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

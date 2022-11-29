@@ -47,7 +47,7 @@ function blocks_course_render_latest_posts_block( $attributes ) {
 	foreach ($recient_posts as $key => $post) {
 
 		$title 		= get_the_title($post);
-		$title 		= $title ? $title : __('(No title)', 'latest-post');
+		$title 		= $title ? $title : __('(No title)', 'latest-posts');
 		$permalink 	= get_the_permalink($post);
 		$excerpt 	= get_the_excerpt($post);
 		

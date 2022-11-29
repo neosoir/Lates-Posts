@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "blocks-course/latest-post",
+	"name": "blocks-course/latest-posts",
 	"title": "Latest Posts",
 	"category": "widgets",
 	"icon": "admin-post",
