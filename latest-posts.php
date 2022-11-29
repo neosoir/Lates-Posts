@@ -53,7 +53,7 @@ function blocks_course_render_latest_posts_block( $attributes ) {
 		
 		$posts .= '<li>';
 
-			if ( ( $attributes['displayFeatureImage'] ) && ( has_post_thumbnail( $post ) ) )
+			if ( ( $attributes['displayFeaturedImage'] ) && ( has_post_thumbnail( $post ) ) )
 				$posts .= get_the_post_thumbnail( $post, 'large' );
 
 			$posts .= '<h5><a href="' . esc_url( $permalink ) . '">' . $title . '</a></h5>';
