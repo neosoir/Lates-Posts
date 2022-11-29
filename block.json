@@ -16,6 +16,10 @@
 		"numberOfPosts": {
 			"type": "number",
 			"default": 5
+		},
+		"displayFeatureImage": {
+			"type": "boolean",
+			"default": true
 		}
 	}
 }

@@ -31,6 +31,47 @@ function blocks_course_latest_posts_block_init() {
 
 function blocks_course_render_latest_posts_block( $attributes ) {
 
-	var_dump( $attributes );
-	return 'Dynamic Contend';
+	$recient_posts = get_posts(
+
+		[
+
+			'posts_per_page' 	=> 	$attributes['numberOfPosts'],
+			'post_status'		=>	'publish'
+
+		]
+
+	);
+
+	$posts = '<ul ' . get_block_wrapper_attributes() . '>';
+
+	foreach ($recient_posts as $key => $post) {
+
+		$title 		= get_the_title($post);
+		$title 		= $title ? $title : __('(No title)', 'latest-post');
+		$permalink 	= get_the_permalink($post);
+		$excerpt 	= get_the_excerpt($post);
+		
+		$posts .= '<li>';
+
+			if ( ( $attributes['displayFeatureImage'] ) && ( has_post_thumbnail( $post ) ) )
+				$posts .= get_the_post_thumbnail( $post, 'large' );
+
+			$posts .= '<h5><a href="' . esc_url( $permalink ) . '">' . $title . '</a></h5>';
+			$posts .= '<time datetime="' . esc_attr( get_the_date('c', $post) ) .  '" >' . esc_html( get_the_date('', $post) ) . '</time>';
+
+			if ( ! empty( $excerpt ) )
+				$posts .= '<p>' . $excerpt . '</p>';
+
+
+		$posts .= '</li>';
+	}
+
+	$posts .= '</ul>';
+
+	return $posts;
+
+	/* echo "<pre>";
+	var_dump( $recient_posts );
+	echo "</pre>"; */
+
 }
