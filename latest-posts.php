@@ -20,7 +20,17 @@
  *
  * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/writing-your-first-block-type/
  */
-function blocks_course_latest_posts_block_init() {
-	register_block_type_from_metadata( __DIR__ );
-}
 add_action( 'init', 'blocks_course_latest_posts_block_init' );
+
+function blocks_course_latest_posts_block_init() {
+	register_block_type_from_metadata( 
+		__DIR__, 
+		['render_callback' => 'blocks_course_render_latest_posts_block'] 
+	);
+}
+
+function blocks_course_render_latest_posts_block( $attributes ) {
+
+	var_dump( $attributes );
+	return 'Dynamic Contend';
+}
