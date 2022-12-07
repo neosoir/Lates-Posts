@@ -31,16 +31,17 @@ function blocks_course_latest_posts_block_init() {
 
 function blocks_course_render_latest_posts_block( $attributes ) {
 
-	$recient_posts = get_posts(
+	$args = [
+		'posts_per_page' 	=> 	$attributes['numberOfPosts'],
+		'post_status'		=>	'publish',
+		'order'				=>	$attributes['order'],
+		'orderby'			=>	$attributes['orderBy']
+	];
+	
+	if ( isset($attributes['categories']) ) 
+		$args['category__in'] = array_column($attributes['categories'], 'id');
 
-		[
-			'posts_per_page' 	=> 	$attributes['numberOfPosts'],
-			'post_status'		=>	'publish',
-			'order'				=>	$attributes['order'],
-			'orderby'			=>	$attributes['orderBy']
-		]
-
-	);
+	$recient_posts = get_posts($args);
 
 	$posts = '<ul ' . get_block_wrapper_attributes() . '>';
 
