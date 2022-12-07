@@ -41,14 +41,18 @@ function Edit(_ref) {
   } = _ref;
   const {
     numberOfPosts,
-    displayFeaturedImage
+    displayFeaturedImage,
+    order,
+    orderBy
   } = attributes;
   const posts = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_5__.useSelect)(select => {
     return select('core').getEntityRecords('postType', 'post', {
       per_page: numberOfPosts,
-      _embed: true
+      _embed: true,
+      order,
+      orderby: orderBy
     });
-  }, [numberOfPosts]);
+  }, [numberOfPosts, order, orderBy]);
   const onDisplayFeaturedImageChange = value => {
     setAttributes({
       displayFeaturedImage: value
@@ -67,7 +71,15 @@ function Edit(_ref) {
     numberOfItems: numberOfPosts,
     onNumberOfItemsChange: onNumberOfItemsChange,
     maxItems: 10,
-    minItems: 2
+    minItems: 2,
+    orderBy: orderBy,
+    onOrderByChange: value => setAttributes({
+      orderBy: value
+    }),
+    order: order,
+    onOrderChange: value => setAttributes({
+      order: value
+    })
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)(), posts && posts.map(post => {
     const featuredImage = post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'].length > 0 && post._embedded['wp:featuredmedia'][0];
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {

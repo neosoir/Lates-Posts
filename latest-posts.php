@@ -34,10 +34,10 @@ function blocks_course_render_latest_posts_block( $attributes ) {
 	$recient_posts = get_posts(
 
 		[
-
 			'posts_per_page' 	=> 	$attributes['numberOfPosts'],
-			'post_status'		=>	'publish'
-
+			'post_status'		=>	'publish',
+			'order'				=>	$attributes['order'],
+			'orderby'			=>	$attributes['orderBy']
 		]
 
 	);

@@ -8,16 +8,18 @@ import { useSelect } from '@wordpress/data';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
-	const { numberOfPosts, displayFeaturedImage } = attributes;
+	const { numberOfPosts, displayFeaturedImage, order, orderBy } = attributes;
 
 	const posts = useSelect(
 		(select) => {
 			return select('core').getEntityRecords('postType', 'post', {
 				per_page: numberOfPosts,
 				_embed: true,
+				order,
+				orderby: orderBy,
 			});
 		},
-		[numberOfPosts]
+		[numberOfPosts, order, orderBy]
 	);
 
 	const onDisplayFeaturedImageChange = (value) => {
@@ -42,6 +44,14 @@ export default function Edit({ attributes, setAttributes }) {
 						onNumberOfItemsChange={onNumberOfItemsChange}
 						maxItems={10}
 						minItems={2}
+						orderBy={orderBy}
+						onOrderByChange={(value) =>
+							setAttributes({ orderBy: value })
+						}
+						order={order}
+						onOrderChange={(value) =>
+							setAttributes({ order: value })
+						}
 					/>
 				</PanelBody>
 			</InspectorControls>
